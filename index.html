@@ -16,13 +16,15 @@
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
+    <div id="map">
       <a-text 
         value='HELLO'
         look-at="[gps-camera]"
-        scale="25 25 25"
+        scale="10 10 10"
         gps-entity-place="latitude: 43.621955; longitude: -79.743260;"
       ></a-text>
-      <a-camera id="map" gps-camera rotation-reader> </a-camera>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </div>
     </a-scene>
 
     <div class="container">
