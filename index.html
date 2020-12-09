@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>GeoAR.js demo</title>
+    <title>ARWIN demo</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="main.css">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
@@ -25,8 +26,11 @@
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
 
+    <div id="notif" class="phone w3-container w3-center w3-animate-left">INCOMING CALL</div>
+
     <div class="container">
         <div class="item" id="call"><button class="call-btn" onclick="map()">MAP</button></div>
+        <div class="item" id="call"><button class="call-btn" onclick="ring()">CALL</button></div>
     </div>
 
     <script>
@@ -36,6 +40,15 @@
                     x.style.display = "none";
                 } else {
                     x.style.display = "block";
+                }
+        }
+
+        function ring() {
+            var x = document.getElementById("notif");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                x.style.display = "none";
                 }
         }
     </script>
