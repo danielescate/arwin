@@ -17,23 +17,67 @@
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
-      <a-text
+      <a-text id="location"
         value='HELLO'
         look-at="[gps-camera]"
         scale="10 10 10"
-        gps-entity-place="latitude: 43.621955; longitude: -79.743260;"
+        gps-entity-place="latitude: 0; longitude: 0;"
       ></a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
 
+    <!-- <div id="modal" class="modal">
+      <form id="getstarted" class="getstarted">
+        <button type="button" id="close" class="close">x</button> 
+        <input type="text" name="lat" id="lat" class="field" placeholder="Latitude">
+        <input type="text" name="lon" id="lon" class="field" placeholder="Longitude">
+        <button id="find-me" class="find-me" onclick="geoFindMe()">Find Me</button>
+      </form>
+    </div>  -->
+    
     <div id="notif" class="phone w3-container w3-center w3-animate-left">INCOMING CALL</div>
 
+    
+    
     <div class="container">
         <div class="item" id="call"><button class="call-btn" onclick="map()">MAP</button></div>
         <div class="item" id="call"><button class="call-btn" onclick="ring()">CALL</button></div>
+        <div class="item" id="call"><button class="find-me" id="find-me" onclick="geoFindMe()">Find Me</button></div>
+        <p id = "status"></p>
     </div>
 
     <script>
+        function geoFindMe() {
+            const status = document.querySelector('#status');
+            const loc = document.querySelector('#location');
+
+            //loc.setAttribute('gps-entity-place') = '';
+            //mapLink.textContent = '';
+
+            function success(position) {
+              const latitude  = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              
+              loc.setAttribute('gps-entity-place') = `latitude: ${latitude}; longitude: ${longitude};`;
+              
+              status.textContent = '';
+            }
+
+            function error() {
+              status.textContent = 'Unable to retrieve your location';
+            }
+
+            if(!navigator.geolocation) {
+              status.textContent = 'Geolocation is not supported by your browser';
+            } else {
+              status.textContent = 'Locating…';
+              navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+        }
+
+        //document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
         function map() {
             var x = document.getElementById("map");
             if (x.style.display === "block") {
