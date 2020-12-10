@@ -20,20 +20,22 @@
       <a-text id="location"
         value='HELLO'
         look-at="[gps-camera]"
-        scale="10 10 10"
-        gps-entity-place="latitude: 0; longitude: 0;"
+        scale="100 100 100"
+        gps-entity-place="latitude: 43.642576; longitude: -79.387082;"
       ></a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
 
-    <!-- <div id="modal" class="modal">
+    <div id="modal" class="modal">
       <form id="getstarted" class="getstarted">
-        <button type="button" id="close" class="close">x</button> 
+       <!--  <button type="button" id="close" class="close">x</button> 
         <input type="text" name="lat" id="lat" class="field" placeholder="Latitude">
         <input type="text" name="lon" id="lon" class="field" placeholder="Longitude">
-        <button id="find-me" class="find-me" onclick="geoFindMe()">Find Me</button>
+        <button id="find-me" class="find-me" onclick="geoFindMe()">Find Me</button>  -->
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>     
       </form>
-    </div>  -->
+    </div> 
     
     <div id="notif" class="phone w3-container w3-center w3-animate-left">INCOMING CALL</div>
 
@@ -53,12 +55,20 @@
             const status = document.querySelector('#status');
             const mapLink = document.querySelector('#map-link');
 
+            const loc = document.getElementById('location');
+            //const out = loc.getAttribute("gps-entity-place")
+            loc.setAttribute("gps-entity-place","test");
+            //loc.out = '';
             mapLink.href = '';
             mapLink.textContent = '';
 
             function success(position) {
               const latitude  = position.coords.latitude;
               const longitude = position.coords.longitude;
+
+              
+
+              //latitude: ${latitude}; longitude: ${longitude};
 
               status.textContent = '';
               mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
