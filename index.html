@@ -48,8 +48,8 @@
 
     <script>
         function geoFindMe() {
-            const status = document.querySelector('#status');
-            const loc = document.querySelector('#location');
+            //const status = document.querySelector('#status');
+            //const loc = document.querySelector('#location');
 
             //loc.setAttribute('gps-entity-place') = '';
             //mapLink.textContent = '';
@@ -58,7 +58,7 @@
               const latitude  = position.coords.latitude;
               const longitude = position.coords.longitude;
               
-              loc.setAttribute('gps-entity-place') = `latitude: ${latitude}; longitude: ${longitude};`;
+              document.querySelector('#location').setAttribute('gps-entity-place',`latitude: ${latitude}; longitude: ${longitude};`);
               
               status.textContent = '';
             }
